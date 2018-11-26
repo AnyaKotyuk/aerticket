@@ -1,0 +1,42 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "3.1"
+services:
+
+  mysql:
+    image: mysql:5.7
+    container_name: ${PROJECT}-mysql
+    working_dir: /application
+    volumes:
+    - .:/application
+    - ./phpdocker/storage/dump.sql:/storage/dump.sql
+    - ./phpdocker/scripts/load.sh:/docker-entrypoint-initdb.d/load.sh
+    environment:
+    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASS}
+    - MYSQL_USER=${MYSQL_USER}
+    - MYSQL_PASSWORD=${MYSQL_PASS}
+    ports:
+    - "${MY_SQL_PORT}:3306"
+
+  webserver:
+    image: nginx:alpine
+    container_name: ${PROJECT}-webserver
+    working_dir: /application
+    volumes:
+    - .:/application
+    - ./phpdocker/nginx/default.conf:/etc/nginx/includes.d/default.conf
+    - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    - ./phpdocker/nginx/passwords:/etc/nginx/passwords
+
+    ports:
+    - "${PORT}:80"
+
+  php-fpm:
+    build: phpdocker/php-fpm
+    container_name: ${PROJECT}-php-fpm
+    working_dir: /application
+    volumes:
+    - .:/application
+    - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+
