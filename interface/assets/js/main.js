@@ -18,6 +18,7 @@ $(document).ready(function () {
                 $(form).find('input + .error').html('');
                 $('.empty').remove();
                 $('table.results tr').not(':first-child').remove();
+                $('table.results').hide();
 
                 if (res.errors) {
                     $(form).find('input').each(function(){
@@ -42,7 +43,6 @@ $(document).ready(function () {
                         }
                         $('table.results').show();
                     } else {
-                        $('table.results').hide();
                         $('<div class="empty">'+res+'</div>').insertAfter(form);
                     }
                 }
