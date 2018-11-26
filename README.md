@@ -1,7 +1,8 @@
 Приклад наявних даних:
-departureAirport: BCN
-arrivalAirport: VIE
-departureDate: 26-11-2018 / 27-11-2018
+
+<br>departureAirport: BCN
+<br>arrivalAirport: VIE
+<br>departureDate: 26-11-2018 / 27-11-2018
 
 
 Реализовать API и интерфейс к нему.
