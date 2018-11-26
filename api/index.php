@@ -1,7 +1,7 @@
 <?php
 
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: http://aerticket.loc:8029");
+header("Access-Control-Allow-Origin: http://ak-site.xyz:8029/");
 header("Access-Control-Allow-Credentials: true");
 
 include 'DB.php';

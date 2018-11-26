@@ -6,7 +6,7 @@ $(document).ready(function () {
 
         $.ajax({
             method: form.attr('method'),
-            url: 'http://api.aerticket.loc:8029?r=search',
+            url: 'http://api.ak-site.xyz:8029/?r=search',
             data: data,
             xhrFields: {
                 withCredentials: true

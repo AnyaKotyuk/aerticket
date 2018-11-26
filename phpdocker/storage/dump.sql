@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.24, for Linux (x86_64)
 --
--- Host: mysql    Database: aer
+-- Host: 0.0.0.0    Database: aer
 -- ------------------------------------------------------
 -- Server version	5.7.23
 
@@ -27,7 +27,7 @@ CREATE TABLE `airport` (
   `name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `airport_name_uindex` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `airport` (
 
 LOCK TABLES `airport` WRITE;
 /*!40000 ALTER TABLE `airport` DISABLE KEYS */;
-INSERT INTO `airport` VALUES (1,'ABC');
+INSERT INTO `airport` VALUES (1,'ABC'),(2,'BCD'),(3,'BCN'),(4,'VIE');
 /*!40000 ALTER TABLE `airport` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,6 +55,7 @@ CREATE TABLE `raices` (
   `arrivalTime` datetime NOT NULL,
   `arrivalAirport` varchar(30) NOT NULL,
   `departureAirport` varchar(30) NOT NULL,
+  `duration` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `raices_departureAirport_arrivalAirport_index` (`departureAirport`,`arrivalAirport`),
   KEY `raices-aairport___fk` (`arrivalAirport`),
@@ -62,7 +63,7 @@ CREATE TABLE `raices` (
   CONSTRAINT `raices-aairport___fk` FOREIGN KEY (`arrivalAirport`) REFERENCES `airport` (`name`),
   CONSTRAINT `raices-dairport___fk` FOREIGN KEY (`departureAirport`) REFERENCES `airport` (`name`),
   CONSTRAINT `raices-transporter___fk` FOREIGN KEY (`transporter`) REFERENCES `transporter` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +72,7 @@ CREATE TABLE `raices` (
 
 LOCK TABLES `raices` WRITE;
 /*!40000 ALTER TABLE `raices` DISABLE KEYS */;
-INSERT INTO `raices` VALUES (1,1,'1','2018-11-25 14:51:01','2018-11-26 14:51:04','ABC','ABC');
+INSERT INTO `raices` VALUES (1,1,'TR 28','2018-11-26 14:51:01','2018-11-26 17:51:04','ABC','BCD',130),(2,2,'PS 231','2018-11-26 11:01:43','2018-11-26 13:02:32','ABC','BCN',110),(4,2,'FR 3166','2018-11-27 18:05:25','2018-11-27 17:05:37','VIE','ABC',67),(5,3,'JU 967','2018-11-26 15:07:26','2018-11-26 20:07:29','VIE','BCN',256),(6,2,'KFU 67','2018-11-26 20:11:06','2018-11-26 17:11:12','VIE','BCN',243),(7,3,'JTD 8776','2018-11-26 21:45:43','2018-11-26 21:45:50','VIE','BCN',156),(8,3,'TYF 965','2018-11-26 19:45:43','2018-11-26 23:45:50','VIE','BCN',169),(9,3,'HFM 78','2018-11-27 19:45:43','2018-11-27 23:45:50','VIE','BCN',169),(10,2,'JCW 85','2018-11-27 16:48:10','2018-11-27 20:48:15','VIE','BCN',178),(11,2,'YHD 74','2018-11-27 13:42:10','2018-11-27 16:57:15','VIE','BCN',254),(12,2,'RTF 980\n','2018-11-27 13:25:10','2018-11-27 17:57:15','BCN','VIE',234),(13,2,'JY 98','2018-11-27 13:20:10','2018-11-27 16:57:15','BCN','VIE',215);
 /*!40000 ALTER TABLE `raices` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +89,7 @@ CREATE TABLE `transporter` (
   `code` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `transporter_name_uindex` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +98,7 @@ CREATE TABLE `transporter` (
 
 LOCK TABLES `transporter` WRITE;
 /*!40000 ALTER TABLE `transporter` DISABLE KEYS */;
-INSERT INTO `transporter` VALUES (1,'cdn','CDN');
+INSERT INTO `transporter` VALUES (1,'cdn','CDN'),(2,'Ukraine International Airlines	\n','UIA'),(3,'Brazilian Airlines','BA');
 /*!40000 ALTER TABLE `transporter` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-25 15:28:43
+-- Dump completed on 2018-11-26 18:51:35
